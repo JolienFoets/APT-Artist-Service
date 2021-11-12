@@ -10,89 +10,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 public class ArtistController {
     @Autowired
     private ArtistRepository artistRepository;
 
-    @GetMapping("artists/{name}")
-    public List<Artist> getArtistsByName(@PathVariable String name){
-        return artistRepository.findArtistsByName(name);
-    }
-
-    @GetMapping("artists/{ISBN}")
-    public List<Artist> getArtistsByMBID(@PathVariable String MBID){
-        return artistRepository.findArtistsByMBID(MBID);
-    }
-
-    @PostMapping("/artists")
-    public Artist addArtist(@RequestBody Artist artist){
-        artistRepository.save(artist);
-        return artist;
-    }
-
-    @PutMapping("/artists")
-    public Artist updateArtist(@RequestBody Artist updatedArtist){
-        Artist opgehaaldeArtist = artistRepository.findArtistsByNameAndAndMBID(updatedArtist.getName(), updatedArtist.getMBID());
-
-        opgehaaldeArtist.setName(updatedArtist.getName());
-        opgehaaldeArtist.setMBID(updatedArtist.getMBID());
-
-        artistRepository.save(opgehaaldeArtist);
-
-        return opgehaaldeArtist;
-    }
+    ArrayList<Artist> artists = new ArrayList<>();
 
     @PostConstruct
     public void opvullen(){
-        Artist artist1 = new Artist();
-        artist1.setName("Justin Bieber");
-        artist1.setMBID("0623964");
-        artistRepository.save(artist1);
-
-        Artist artist2 = new Artist();
-        artist2.setName("Shawn Mendes");
-        artist2.setMBID("0285749");
-
-        System.out.println("Artists test " + artistRepository.findArtistsByMBID("0623964").size());
+        artists.add(new Artist(0, "Justin Bieber", "0623964"));
+        artists.add(new Artist(1, "Katy Perry", "0734075"));
     }
 
-//    ArrayList<Artist> artists = new ArrayList<>();
-//
-////    public void opvullen(){
-////        Artist artist1 = new Artist();
-////        artist1.setName("Justin Bieber");
-////        artist1.setMBID("0623964");
-////        artistRepository.save(artist1);
-////    }
-//
-//    @PostConstruct
-//    public void opvullen() {
-//        Artist artist1 = new Artist();
-//        artist1.setName("Justin Bieber");
-//        artist1.setMBID("0623964");
-//        artistRepository.save(artist1);
-//    }
-//
-//    @GetMapping("/artists")
-//    public List<Artist> all() {
-//        return artists;
-//    }
-//
+
+    @GetMapping("/artists")
+    public List<Artist> all(){
+        return artists;
+    }
+
+    @GetMapping("/artists/{id}")
+    public Artist one(@PathVariable int id){
+        for(Artist a : artists){
+            if(a.getId() == id){
+                return a;
+            }
+        }
+        return null;
+    }
+
+    @PutMapping("/artists/{id}")
+    public Artist replaceArtist(@RequestBody Artist updateArtist, @PathVariable int id){
+        for(Artist a : artists){
+            if(a.getId() == id){
+                a.setName(updateArtist.getName());
+                a.setMBID(updateArtist.getMBID());
+                return a;
+            }
+        }
+        return null;
+    }
+
+    @DeleteMapping("/artists/{id}")
+    public void deleteArtist(@PathVariable int id){
+        for(Artist a : artists){
+            if(a.getId() == id){
+                artists.remove(a);
+            }
+        }
+    }
+
 //    @GetMapping("/artists/{name}")
 //    public List<Artist> getArtistsByName(@PathVariable String name){
-//        return artistRepository.findArtistByName(name);
+//        return artistRepository.findArtistsByName(name);
 //    }
 //
-//    @GetMapping("/artists/{MBID}")
+//    @GetMapping("/artists/{ISBN}")
 //    public List<Artist> getArtistsByMBID(@PathVariable String MBID){
-//        return artistRepository.findArtistByMBID(MBID);
+//        return artistRepository.findArtistsByMBID(MBID);
 //    }
-//
-//    @PostMapping("/artists")
-//    public Artist addArtist(@RequestBody Artist artist){
-//        artistRepository.save(artist);
-//        return artist;
-//    }
+    
+    @PostMapping("/artists")
+    Artist add(@RequestBody Artist newArtist){
+        artists.add(newArtist);
+        return newArtist;
+    }
 
 
 }
