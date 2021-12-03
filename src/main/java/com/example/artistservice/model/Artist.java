@@ -6,23 +6,35 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("artists")
 public class Artist {
     @Id
-    private int id;
+    private String id;
+    private int artistId;
     private String name;
     private String MBID;
+    private int numberStreams;
 
-    public Artist(int id, String name, String MBID){
+    public Artist(String id, int artistId, String name, String MBID, int numberStreams){
         super();
         this.id = id;
+        this.artistId = artistId;
         this.name = name;
         this.MBID = MBID;
+        this.numberStreams = numberStreams;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public int getArtistId() {
+        return artistId;
+    }
+
+    public void setArtistId(int artistId) {
+        this.artistId = artistId;
     }
 
     public String getName() {
@@ -39,5 +51,13 @@ public class Artist {
 
     public void setMBID(String MBID) {
         this.MBID = MBID;
+    }
+
+    public int getNumberStreams() {
+        return numberStreams;
+    }
+
+    public void setNumberStreams(int numberStreams) {
+        this.numberStreams = numberStreams;
     }
 }

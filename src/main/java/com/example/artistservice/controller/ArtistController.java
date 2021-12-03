@@ -19,8 +19,8 @@ public class ArtistController {
 
     @PostConstruct
     public void opvullen(){
-        artists.add(new Artist(0, "Justin Bieber", "0623964"));
-        artists.add(new Artist(1, "Katy Perry", "0734075"));
+        artists.add(new Artist("0", 1,"Justin Bieber", "0623964", 200));
+        artists.add(new Artist("1", 2, "Katy Perry", "0734075", 150));
     }
 
 
@@ -29,32 +29,34 @@ public class ArtistController {
         return artists;
     }
 
-    @GetMapping("/artists/{id}")
-    public Artist one(@PathVariable int id){
+    @GetMapping("/artists/{artistId}")
+    public Artist one(@PathVariable int artistId){
         for(Artist a : artists){
-            if(a.getId() == id){
+            if(a.getArtistId() == artistId){
                 return a;
             }
         }
         return null;
     }
 
-    @PutMapping("/artists/{id}")
-    public Artist replaceArtist(@RequestBody Artist updateArtist, @PathVariable int id){
+    @PutMapping("/artists/{artistId}")
+    public Artist replaceArtist(@RequestBody Artist updateArtist, @PathVariable int artistId){
         for(Artist a : artists){
-            if(a.getId() == id){
+            if(a.getArtistId() == artistId){
+                a.setId(updateArtist.getId());
                 a.setName(updateArtist.getName());
                 a.setMBID(updateArtist.getMBID());
+                a.setNumberStreams(updateArtist.getNumberStreams());
                 return a;
             }
         }
         return null;
     }
 
-    @DeleteMapping("/artists/{id}")
-    public void deleteArtist(@PathVariable int id){
+    @DeleteMapping("/artists/{artistId}")
+    public void deleteArtist(@PathVariable int artistId){
         for(Artist a : artists){
-            if(a.getId() == id){
+            if(a.getArtistId() == artistId){
                 artists.remove(a);
             }
         }
