@@ -119,7 +119,7 @@ public class ArtistControllerUnitTests {
         mockMvc.perform(put("/api/artists")
                 .content(mapper.writeValueAsString(updatedArtist))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.artistId",is(001)))
                 .andExpect(jsonPath("$.MBID",is("0623964")))
