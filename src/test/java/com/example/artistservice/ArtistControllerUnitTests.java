@@ -32,7 +32,7 @@ public class ArtistControllerUnitTests {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    @Test
+    /*@Test
     public void givenArtist_whenGetArtistByArtistIdAndMBID_thenReturnJsonArtist() throws Exception {
         Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
 
@@ -44,7 +44,7 @@ public class ArtistControllerUnitTests {
                 .andExpect(jsonPath("$.artistId",is(001)))
                 .andExpect(jsonPath("$.MBID",is("0623964")))
                 .andExpect(jsonPath("$.numberStreams",is(10)));
-    }
+    }*/
 
     /*@Test
     public void givenArtist_whenGetArtistByMBID_thenReturnJsonArtists() throws Exception {
@@ -69,30 +69,26 @@ public class ArtistControllerUnitTests {
                 .andExpect(jsonPath("$[1].numberStreams",is(4)));
     }*/
 
-    /*
+
     @Test
     public void givenArtist_whenGetArtistByArtistId_thenReturnJsonArtists() throws Exception {
         Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
-        Artist artistArtist1Album2 = new Artist("1",001,"Justin Bieber", "0623964", 4);
+        Artist artistArtist1Album2 = new Artist("1",002,"Justin Bieber", "0623964", 4);
 
         List<Artist> artistList = new ArrayList<>();
         artistList.add(artistArtist1Album1);
         artistList.add(artistArtist1Album2);
 
-        given(artistRepository.findArtistsByArtistId(001)).willReturn(artistList);
+        given(artistRepository.findArtistByArtistId(001)).willReturn(artistArtist1Album1);
 
         mockMvc.perform(get("/api/artists/{artistId}",001))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                PROBLEMEN BIJ "$"
-                .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].artistId",is(001)))
-                .andExpect(jsonPath("$[0].MBID",is("0623964")))
-                .andExpect(jsonPath("$[0].numberStreams",is(10)))
-                .andExpect(jsonPath("$[1].artistId",is(001)))
-                .andExpect(jsonPath("$[1].MBID",is("0623964")))
-                .andExpect(jsonPath("$[1].numberStreams",is(4)));
-    }*/
+                //.andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$.artistId",is(001)))
+                .andExpect(jsonPath("$.mbid",is("0623964")))
+                .andExpect(jsonPath("$.numberStreams",is(10)));
+    }
 
     @Test
     public void whenPostArtist_thenReturnJsonArtist() throws Exception{
@@ -104,7 +100,7 @@ public class ArtistControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.artistId",is(003)))
-                .andExpect(jsonPath("$[0].MBID",is("5178419")))
+                .andExpect(jsonPath("$.mbid",is("5178419")))
                 .andExpect(jsonPath("$.numberStreams",is(10)));
     }
 
@@ -112,7 +108,7 @@ public class ArtistControllerUnitTests {
     public void givenArtist_whenPutArtist_thenReturnJsonArtist() throws Exception{
         Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
 
-        given(artistRepository.findArtistsByNameAndAndMBID("Justin Bieber","0623964")).willReturn(artistArtist1Album1);
+        given(artistRepository.findArtistByArtistId(001)).willReturn(artistArtist1Album1);
 
         Artist updatedArtist = new Artist("1",001,"Justin Bieber", "0623964", 5);
 
@@ -122,7 +118,7 @@ public class ArtistControllerUnitTests {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.artistId",is(001)))
-                .andExpect(jsonPath("$.MBID",is("0623964")))
+                .andExpect(jsonPath("$.mbid",is("0623964")))
                 .andExpect(jsonPath("$.numberStreams",is(5)));
     }
 
