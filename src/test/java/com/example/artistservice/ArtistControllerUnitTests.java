@@ -126,20 +126,20 @@ public class ArtistControllerUnitTests {
 
     @Test
     public void givenArtist_whenDeleteArtist_thenStatusOk() throws Exception{
-        Artist artistToBeDeleted = new Artist("999",999,"Test", "1254785", 20);
+        Artist artistToBeDeleted = new Artist("999",999,"TestArtist", "1254785", 20);
 
-        given(artistRepository.findArtistsByNameAndAndMBID("Test","1254785")).willReturn(artistToBeDeleted);
+        given(artistRepository.findArtistsByArtistId(999)).willReturn(artistToBeDeleted);
 
-        mockMvc.perform(delete("/api/artists/{artistId}","Test")
+        mockMvc.perform(delete("/api/artists/{artistId}", 999)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception{
-        given(artistRepository.findArtistsByArtistId(988)).willReturn(null);
+        given(artistRepository.findArtistsByArtistId(900)).willReturn(null);
 
-        mockMvc.perform(delete("/api/artists/{artistId}",988)
+        mockMvc.perform(delete("/api/artists/{artistId}",900)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
