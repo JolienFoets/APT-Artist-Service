@@ -128,7 +128,7 @@ public class ArtistControllerUnitTests {
     public void givenArtist_whenDeleteArtist_thenStatusOk() throws Exception{
         Artist artistToBeDeleted = new Artist("999",999,"TestArtist", "1254785", 20);
 
-        given(artistRepository.findArtistsByArtistId(999)).willReturn(artistToBeDeleted);
+        given(artistRepository.findArtistByArtistId(999)).willReturn(artistToBeDeleted);
 
         mockMvc.perform(delete("/api/artists/{artistId}", 999)
                 .contentType(MediaType.APPLICATION_JSON))

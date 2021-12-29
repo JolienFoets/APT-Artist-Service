@@ -13,4 +13,5 @@ public interface ArtistRepository extends MongoRepository<Artist, String> {
     List<Artist> findArtistsByMBID(String MBID);
     List<Artist> findArtistsByArtistId(int artistId);
     Artist findArtistsByNameAndAndMBID(String name, String MBID);
+    Artist findArtistByArtistId(int artistId);
 }

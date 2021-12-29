@@ -17,6 +17,8 @@ public class ArtistController {
 
     ArrayList<Artist> artists = new ArrayList<>();
 
+
+
     @PostConstruct
     public void opvullen(){
         artists.add(new Artist("0", 1,"Justin Bieber", "0623964", 200));
