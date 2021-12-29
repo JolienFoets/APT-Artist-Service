@@ -101,9 +101,9 @@ public class ArtistControllerUnitTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].artistId",is(003)))
+                .andExpect(jsonPath("$.artistId",is(003)))
                 .andExpect(jsonPath("$[0].MBID",is("5178419")))
-                .andExpect(jsonPath("$[0].numberStreams",is(10)));
+                .andExpect(jsonPath("$.numberStreams",is(10)));
     }
 
     @Test
@@ -137,9 +137,9 @@ public class ArtistControllerUnitTests {
 
     @Test
     public void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception{
-        given(artistRepository.findArtistsByArtistId(900)).willReturn(null);
+        given(artistRepository.findArtistsByArtistId(5000)).willReturn(null);
 
-        mockMvc.perform(delete("/api/artists/{artistId}",900)
+        mockMvc.perform(delete("/api/artists/{artistId}",5000)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
