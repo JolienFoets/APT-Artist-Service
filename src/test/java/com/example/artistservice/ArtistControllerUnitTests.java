@@ -38,7 +38,7 @@ public class ArtistControllerUnitTests {
 
         given(artistRepository.findArtistsByNameAndAndMBID("Justin Bieber","0623964")).willReturn(artistArtist1Album1);
 
-        mockMvc.perform(get("api/artists/{artistId}",001))
+        mockMvc.perform(get("/api/artists/{artistId}",001))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.artistId",is(001)))
@@ -57,7 +57,7 @@ public class ArtistControllerUnitTests {
 
         given(artistRepository.findArtistsByMBID("0623964")).willReturn(artistList);
 
-        mockMvc.perform(get("api/artists/{MBID}","0623964"))
+        mockMvc.perform(get("/api/artists/{MBID}","0623964"))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -80,7 +80,7 @@ public class ArtistControllerUnitTests {
 
         given(artistRepository.findArtistsByArtistId(001)).willReturn(artistList);
 
-        mockMvc.perform(get("api/artists/{artistId}",001))
+        mockMvc.perform(get("/api/artists/{artistId}",001))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
@@ -96,7 +96,7 @@ public class ArtistControllerUnitTests {
     public void whenPostArtist_thenReturnJsonArtist() throws Exception{
         Artist artistArtist3Album1 = new Artist("3",003,"Katy Perry", "5178419", 10);
 
-        mockMvc.perform(post("api/artists")
+        mockMvc.perform(post("/api/artists")
                 .content(mapper.writeValueAsString(artistArtist3Album1))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -114,7 +114,7 @@ public class ArtistControllerUnitTests {
 
         Artist updatedArtist = new Artist("1",001,"Justin Bieber", "0623964", 5);
 
-        mockMvc.perform(put("api/artists")
+        mockMvc.perform(put("/api/artists")
                 .content(mapper.writeValueAsString(updatedArtist))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -130,7 +130,7 @@ public class ArtistControllerUnitTests {
 
         given(artistRepository.findArtistsByNameAndAndMBID("Test","1254785")).willReturn(artistToBeDeleted);
 
-        mockMvc.perform(delete("api/artists/{artistId}","Test")
+        mockMvc.perform(delete("/api/artists/{artistId}","Test")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -139,7 +139,7 @@ public class ArtistControllerUnitTests {
     public void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception{
         given(artistRepository.findArtistsByNameAndAndMBID("Test","1254785")).willReturn(null);
 
-        mockMvc.perform(delete("api/artists/{artistId}","Test")
+        mockMvc.perform(delete("/api/artists/{artistId}","Test")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
