@@ -27,11 +27,13 @@ public class ArtistController {
 
 
     @GetMapping("/artists")
+    @ResponseBody
     public List<Artist> all(){
         return artists;
     }
 
     @GetMapping("/artists/{artistId}")
+    @ResponseBody
     public Artist one(@PathVariable int artistId){
         for(Artist a : artists){
             if(a.getArtistId() == artistId){
@@ -57,6 +59,7 @@ public class ArtistController {
     }
 
     @DeleteMapping("/artists/{artistId}")
+    @ResponseBody
     public void deleteArtist(@PathVariable int artistId){
         for(Artist a : artists){
             if(a.getArtistId() == artistId){
@@ -76,6 +79,7 @@ public class ArtistController {
 //    }
     
     @PostMapping("/artists")
+    @ResponseBody
     Artist add(@RequestBody Artist newArtist){
         artists.add(newArtist);
         return newArtist;
