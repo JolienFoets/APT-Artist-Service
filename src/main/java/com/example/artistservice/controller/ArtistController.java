@@ -47,7 +47,7 @@ public class ArtistController {
             if(a.getArtistId() == artistId){
                 a.setId(updateArtist.getId());
                 a.setName(updateArtist.getName());
-                a.setMBID(updateArtist.getMBID());
+                a.setmbid(updateArtist.getmbid());
                 a.setNumberStreams(updateArtist.getNumberStreams());
                 return a;
             }

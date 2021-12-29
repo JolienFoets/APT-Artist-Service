@@ -10,8 +10,8 @@ import java.util.List;
 @Repository
 public interface ArtistRepository extends MongoRepository<Artist, String> {
     List<Artist> findArtistsByName(String name);
-    List<Artist> findArtistsByMBID(String MBID);
+    List<Artist> findArtistsByMBID(String mbid);
     List<Artist> findArtistsByArtistId(int artistId);
-    Artist findArtistsByNameAndAndMBID(String name, String MBID);
+    Artist findArtistsByNameAndAndMBID(String name, String mbid);
     Artist findArtistByArtistId(int artistId);
 }
