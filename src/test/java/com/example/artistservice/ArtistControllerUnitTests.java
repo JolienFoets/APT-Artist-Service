@@ -116,7 +116,7 @@ public class ArtistControllerUnitTests {
 
         Artist updatedArtist = new Artist("1",001,"Justin Bieber", "0623964", 5);
 
-        mockMvc.perform(put("/api/artists")
+        mockMvc.perform(put("/api/artists/{artistId}", 001)
                 .content(mapper.writeValueAsString(updatedArtist))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
