@@ -42,6 +42,7 @@ public class ArtistController {
     }
 
     @PutMapping("/artists/{artistId}")
+    @ResponseBody
     public Artist replaceArtist(@RequestBody Artist updateArtist, @PathVariable int artistId){
         for(Artist a : artists){
             if(a.getArtistId() == artistId){
