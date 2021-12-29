@@ -137,9 +137,9 @@ public class ArtistControllerUnitTests {
 
     @Test
     public void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception{
-        given(artistRepository.findArtistsByNameAndAndMBID("Test","1254785")).willReturn(null);
+        given(artistRepository.findArtistsByArtistId(988)).willReturn(null);
 
-        mockMvc.perform(delete("/api/artists/{artistId}","Test")
+        mockMvc.perform(delete("/api/artists/{artistId}",988)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
