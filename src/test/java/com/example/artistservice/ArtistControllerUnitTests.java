@@ -101,9 +101,9 @@ public class ArtistControllerUnitTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.artistId",is(003)))
-                .andExpect(jsonPath("$.MBID",is("5178419")))
-                .andExpect(jsonPath("$.numberStreams",is(10)));
+                .andExpect(jsonPath("$[0].artistId",is(003)))
+                .andExpect(jsonPath("$[0].MBID",is("5178419")))
+                .andExpect(jsonPath("$[0].numberStreams",is(10)));
     }
 
     @Test
