@@ -46,7 +46,7 @@ public class ArtistControllerUnitTests {
                 .andExpect(jsonPath("$.numberStreams",is(10)));
     }
 
-    @Test
+    /*@Test
     public void givenArtist_whenGetArtistByMBID_thenReturnJsonArtists() throws Exception {
         Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
         Artist artistArtist2Album1 = new Artist("2",002,"Shawn Mendes", "3956297", 4);
@@ -67,7 +67,7 @@ public class ArtistControllerUnitTests {
                 .andExpect(jsonPath("$[1].artistId",is(002)))
                 .andExpect(jsonPath("$[1].MBID",is("3956297")))
                 .andExpect(jsonPath("$[1].numberStreams",is(4)));
-    }
+    }*/
 
     @Test
     public void givenArtist_whenGetArtistByArtistId_thenReturnJsonArtists() throws Exception {
