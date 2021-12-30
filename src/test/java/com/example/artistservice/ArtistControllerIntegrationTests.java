@@ -30,7 +30,7 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ArtistControllerIntegrationTests {
+class ArtistControllerIntegrationTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -62,7 +62,7 @@ public class ArtistControllerIntegrationTests {
 
 
     @Test
-    public void givenArtist_whenGetArtistsByArtistId_thenReturnJsonArtists() throws Exception {
+    void givenArtist_whenGetArtistsByArtistId_thenReturnJsonArtists() throws Exception {
 
         mockMvc.perform(get("/api/artists/{artistId}", 001))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -73,7 +73,7 @@ public class ArtistControllerIntegrationTests {
     }
 
     @Test
-    public void whenPostArtist_thenReturnJsonArtist() throws Exception {
+    void whenPostArtist_thenReturnJsonArtist() throws Exception {
         Artist artistArtist3Album1 = new Artist("3", 003, "Katy Perry", "5178419", 10);
 
         mockMvc.perform(post("/api/artists")
@@ -88,7 +88,7 @@ public class ArtistControllerIntegrationTests {
     }
 
     @Test
-    public void givenArtist_whenPutArtist_thenReturnJsonArtist() throws Exception {
+    void givenArtist_whenPutArtist_thenReturnJsonArtist() throws Exception {
         Artist updatedArtist = new Artist("1", 001, "Justin Bieber", "0623964", 9);
 
         mockMvc.perform(put("/api/artists/{artistId}", 001)
@@ -102,7 +102,7 @@ public class ArtistControllerIntegrationTests {
     }
 
     @Test
-    public void givenArtist_whenDeleteArtist_thenStatusOk() throws Exception {
+    void givenArtist_whenDeleteArtist_thenStatusOk() throws Exception {
 
         mockMvc.perform(delete("/api/artists/{artistId}", 999)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -110,7 +110,7 @@ public class ArtistControllerIntegrationTests {
     }
 
     @Test
-    public void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception {
+    void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception {
 
         mockMvc.perform(delete("/api/artists/{artistId}", 888)
                 .contentType(MediaType.APPLICATION_JSON))

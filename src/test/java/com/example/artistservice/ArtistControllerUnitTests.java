@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ArtistControllerUnitTests {
+class ArtistControllerUnitTests {
 
     @Autowired
     private MockMvc mockMvc;
@@ -71,7 +71,7 @@ public class ArtistControllerUnitTests {
 
 
     @Test
-    public void givenArtist_whenGetArtistByArtistId_thenReturnJsonArtists() throws Exception {
+    void givenArtist_whenGetArtistByArtistId_thenReturnJsonArtists() throws Exception {
         Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
         Artist artistArtist1Album2 = new Artist("1",002,"Justin Bieber", "0623964", 4);
 
@@ -91,7 +91,7 @@ public class ArtistControllerUnitTests {
     }
 
     @Test
-    public void whenPostArtist_thenReturnJsonArtist() throws Exception{
+    void whenPostArtist_thenReturnJsonArtist() throws Exception{
         Artist artistArtist3Album1 = new Artist("3",003,"Katy Perry", "5178419", 10);
 
         mockMvc.perform(post("/api/artists")
@@ -105,7 +105,7 @@ public class ArtistControllerUnitTests {
     }
 
     @Test
-    public void givenArtist_whenPutArtist_thenReturnJsonArtist() throws Exception{
+    void givenArtist_whenPutArtist_thenReturnJsonArtist() throws Exception{
         Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
 
         given(artistRepository.findArtistByArtistId(001)).willReturn(artistArtist1Album1);
@@ -123,7 +123,7 @@ public class ArtistControllerUnitTests {
     }
 
     @Test
-    public void givenArtist_whenDeleteArtist_thenStatusOk() throws Exception{
+    void givenArtist_whenDeleteArtist_thenStatusOk() throws Exception{
         Artist artistToBeDeleted = new Artist("999",999,"TestArtist", "1254785", 20);
 
         given(artistRepository.findArtistByArtistId(999)).willReturn(artistToBeDeleted);
@@ -134,7 +134,7 @@ public class ArtistControllerUnitTests {
     }
 
     @Test
-    public void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception{
+    void givenNoArtist_whenDeleteArtist_thenStatusNotFound() throws Exception{
         given(artistRepository.findArtistsByArtistId(5000)).willReturn(null);
 
         mockMvc.perform(delete("/api/artists/{artistId}",5000)
