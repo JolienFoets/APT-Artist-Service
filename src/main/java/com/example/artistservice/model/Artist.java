@@ -9,15 +9,15 @@ public class Artist {
     private String id;
     private int artistId;
     private String name;
-    private String MBID;
+    private String mbid;
     private int numberStreams;
 
-    public Artist(String id, int artistId, String name, String MBID, int numberStreams){
+    public Artist(String id, int artistId, String name, String mbid, int numberStreams){
         super();
         this.id = id;
         this.artistId = artistId;
         this.name = name;
-        this.MBID = MBID;
+        this.mbid = mbid;
         this.numberStreams = numberStreams;
     }
 
@@ -45,12 +45,12 @@ public class Artist {
         this.name = name;
     }
 
-    public String getMBID() {
-        return MBID;
+    public String getmbid() {
+        return mbid;
     }
 
-    public void setMBID(String MBID) {
-        this.MBID = MBID;
+    public void setmbid(String mbid) {
+        this.mbid = mbid;
     }
 
     public int getNumberStreams() {

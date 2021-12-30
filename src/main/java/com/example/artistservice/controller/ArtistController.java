@@ -46,7 +46,7 @@ public class ArtistController {
         Artist retrievedArtist = artistRepository.findArtistByArtistId(updatedArtist.getArtistId());
 
         retrievedArtist.setName(updatedArtist.getName());
-        retrievedArtist.setName(updatedArtist.getMBID());
+        retrievedArtist.setmbid(updatedArtist.getmbid());
         retrievedArtist.setNumberStreams(updatedArtist.getNumberStreams());
 
         artistRepository.save(retrievedArtist);
