@@ -21,20 +21,8 @@ public class Artist {
         this.numberStreams = numberStreams;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public int getArtistId() {
         return artistId;
-    }
-
-    public void setArtistId(int artistId) {
-        this.artistId = artistId;
     }
 
     public String getName() {
