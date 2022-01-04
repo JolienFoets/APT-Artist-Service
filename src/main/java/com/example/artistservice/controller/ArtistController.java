@@ -58,6 +58,7 @@ public class ArtistController {
         Artist artist = artistRepository.findArtistByArtistId(artistId);
 
         if(artist!=null){
+            artistRepository.delete(artist);
             return ResponseEntity.ok().build();
         }else{
             return ResponseEntity.notFound().build();
