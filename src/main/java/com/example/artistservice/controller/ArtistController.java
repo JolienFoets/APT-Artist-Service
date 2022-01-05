@@ -15,13 +15,13 @@ public class ArtistController {
     @Autowired
     private ArtistRepository artistRepository;
 
-    @PostConstruct
+    /*@PostConstruct
     public void fillDB() {
         if (artistRepository.count() == 0) {
             artistRepository.save(new Artist("0", 1, "Justin Bieber", "0623964", 200));
             artistRepository.save(new Artist("1", 2, "Katy Perry", "0734075", 150));
         }
-    }
+    }*/
 
     @GetMapping("/artists")
     @ResponseBody
