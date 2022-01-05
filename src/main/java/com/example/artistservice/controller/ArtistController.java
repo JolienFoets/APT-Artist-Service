@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
@@ -14,14 +13,6 @@ import java.util.List;
 public class ArtistController {
     @Autowired
     private ArtistRepository artistRepository;
-
-    /*@PostConstruct
-    public void fillDB() {
-        if (artistRepository.count() == 0) {
-            artistRepository.save(new Artist("0", 1, "Justin Bieber", "0623964", 200));
-            artistRepository.save(new Artist("1", 2, "Katy Perry", "0734075", 150));
-        }
-    }*/
 
     @GetMapping("/artists")
     @ResponseBody

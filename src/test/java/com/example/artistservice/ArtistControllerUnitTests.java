@@ -91,6 +91,31 @@ class ArtistControllerUnitTests {
     }
 
     @Test
+    void givenArtist_whenGetArtists_thenReturnJsonArtists() throws Exception {
+        Artist artistArtist1Album1 = new Artist("1",001,"Justin Bieber", "0623964", 10);
+        Artist artistArtist1Album2 = new Artist("1",002,"Lady Gaga", "1234567", 4);
+
+        List<Artist> artistList = new ArrayList<>();
+        artistList.add(artistArtist1Album1);
+        artistList.add(artistArtist1Album2);
+
+        given(artistRepository.findAll()).willReturn(artistList);
+
+        mockMvc.perform(get("/api/artists"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].artistId",is(001)))
+                .andExpect(jsonPath("$[0].name",is("Justin Bieber")))
+                .andExpect(jsonPath("$[0].mbid",is("0623964")))
+                .andExpect(jsonPath("$[0].numberStreams",is(10)))
+                .andExpect(jsonPath("$[1].artistId",is(002)))
+                .andExpect(jsonPath("$[1].name",is("Lady Gaga")))
+                .andExpect(jsonPath("$[1].mbid",is("1234567")))
+                .andExpect(jsonPath("$[1].numberStreams",is(4)));
+    }
+
+    @Test
     void whenPostArtist_thenReturnJsonArtist() throws Exception{
         Artist artistArtist3Album1 = new Artist("3",003,"Katy Perry", "5178419", 10);
 
